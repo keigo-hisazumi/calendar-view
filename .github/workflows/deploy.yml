@@ -33,6 +33,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
+          VITE_BASE_PATH: /calendar-view/
       - name: GitHub Pages へのデプロイ
         uses: peaceiris/actions-gh-pages@v4
         with:
