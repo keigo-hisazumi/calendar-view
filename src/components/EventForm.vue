@@ -1,7 +1,24 @@
 <template>
   <div class="event-form">
     <h3>{{ isEdit ? '予定を編集' : '新しい予定' }}</h3>
-    
+
+    <div class="template-actions">
+      <button type="button" class="btn btn-template" @click="showTemplateSelector = true">
+        📋 テンプレートから選択
+      </button>
+      <button type="button" class="btn btn-save-template" @click="saveAsTemplate">
+        💾 テンプレートとして保存
+      </button>
+    </div>
+
+    <TemplateSelector
+      v-if="showTemplateSelector"
+      :templates="templates"
+      @apply="applyTemplate"
+      @close="showTemplateSelector = false"
+      @delete="deleteTemplate"
+    />
+
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label for="title">タイトル *</label>
@@ -82,6 +99,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
+import TemplateSelector from './TemplateSelector.vue'
 
 const props = defineProps({
   event: {
@@ -101,6 +119,23 @@ const props = defineProps({
 const emit = defineEmits(['submit', 'cancel'])
 
 const isEdit = ref(!!props.event)
+const showTemplateSelector = ref(false)
+
+// テンプレートをローカルストレージから読み込み
+const loadTemplates = () => {
+  const stored = localStorage.getItem('calendar-templates')
+  return stored ? JSON.parse(stored) : [
+    { id: 1, title: '定例ミーティング', time: '10:00', description: '週次の進捗報告', shared: true, sharedWith: [] },
+    { id: 2, title: '昼休み', time: '12:00', description: '', shared: false, sharedWith: [] },
+    { id: 3, title: '1on1', time: '15:00', description: '上長との1on1ミーティング', shared: false, sharedWith: [] }
+  ]
+}
+
+const templates = ref(loadTemplates())
+
+const saveTemplates = () => {
+  localStorage.setItem('calendar-templates', JSON.stringify(templates.value))
+}
 
 // フォームデータの初期化
 const initFormData = () => {
@@ -117,7 +152,7 @@ const initFormData = () => {
     const dateStr = props.selectedDate
       ? props.selectedDate.toISOString().split('T')[0]
       : new Date().toISOString().split('T')[0]
-    
+
     return {
       title: '',
       date: dateStr,
@@ -131,7 +166,46 @@ const initFormData = () => {
 
 const formData = ref(initFormData())
 
-// イベントが変更されたらフォームをリセット
+// テンプレートを適用（日付は現在のフォームの日付を維持）
+const applyTemplate = (template) => {
+  const currentDate = formData.value.date
+  formData.value = {
+    title: template.title,
+    date: currentDate,
+    time: template.time || '',
+    description: template.description || '',
+    shared: template.shared || false,
+    sharedWith: [...(template.sharedWith || [])]
+  }
+  showTemplateSelector.value = false
+}
+
+// 現在のフォーム内容をテンプレートとして保存
+const saveAsTemplate = () => {
+  const title = formData.value.title.trim()
+  if (!title) {
+    alert('タイトルを入力してからテンプレートとして保存してください。')
+    return
+  }
+  const newTemplate = {
+    id: Date.now(),
+    title,
+    time: formData.value.time,
+    description: formData.value.description,
+    shared: formData.value.shared,
+    sharedWith: [...formData.value.sharedWith]
+  }
+  templates.value.push(newTemplate)
+  saveTemplates()
+  alert(`「${title}」をテンプレートとして保存しました。`)
+}
+
+// テンプレート削除
+const deleteTemplate = (id) => {
+  templates.value = templates.value.filter(t => t.id !== id)
+  saveTemplates()
+}
+
 watch(() => props.event, () => {
   isEdit.value = !!props.event
   formData.value = initFormData()
@@ -165,8 +239,15 @@ const handleCancel = () => {
 
 .event-form h3 {
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   color: #2c3e50;
+}
+
+.template-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .form-group {
@@ -250,6 +331,28 @@ const handleCancel = () => {
   background: #7f8c8d;
 }
 
+.btn-template {
+  background: #27ae60;
+  color: white;
+  font-size: 0.9rem;
+  padding: 8px 14px;
+}
+
+.btn-template:hover {
+  background: #219a52;
+}
+
+.btn-save-template {
+  background: #e67e22;
+  color: white;
+  font-size: 0.9rem;
+  padding: 8px 14px;
+}
+
+.btn-save-template:hover {
+  background: #ca6f1e;
+}
+
 @media (max-width: 768px) {
   .event-form {
     padding: 15px;
@@ -261,6 +364,16 @@ const handleCancel = () => {
 
   .btn {
     width: 100%;
+  }
+
+  .template-actions {
+    flex-direction: column;
+  }
+
+  .btn-template,
+  .btn-save-template {
+    width: 100%;
+    text-align: center;
   }
 }
 </style>
