@@ -1,0 +1,33 @@
+{
+  "name": "カレンダーアプリ - 予定共有",
+  "short_name": "カレンダー",
+  "start_url": "/calendar-view/pr-14/",
+  "scope": "/calendar-view/pr-14/",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ],
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/calendar-view/pr-14/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/calendar-view/pr-14/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/calendar-view/pr-14/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
