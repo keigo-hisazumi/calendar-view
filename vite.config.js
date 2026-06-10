@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import react from '@vitejs/plugin-react'
 import fs from 'fs'
 import path from 'path'
 
@@ -27,6 +27,6 @@ const base = process.env.VITE_BASE_PATH ?? '/'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue(), pwaManifestPlugin(base)],
+  plugins: [react(), pwaManifestPlugin(base)],
   base,
 })
