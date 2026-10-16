@@ -1,4 +1,5 @@
 # PR がマージされるたびに Release Drafter がリリースノート草案を更新する。
+# タグを付けるタイミングで GitHub UI から「Publish release」を押せば公開できる。
 
 name: Release Drafter
 
