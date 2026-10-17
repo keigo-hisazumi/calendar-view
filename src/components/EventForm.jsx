@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const initFormData = (event, selectedDate) => {
   if (event) {
@@ -21,9 +21,13 @@ export default function EventForm({ event, selectedDate, availableUsers, onSubmi
   const isEdit = !!event
   const [formData, setFormData] = useState(() => initFormData(event, selectedDate))
 
-  useEffect(() => {
+  // event / selectedDate が変わったらフォームを初期化し直す（レンダー中に前回の props と比較する方式）
+  // https://react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+  const [prevProps, setPrevProps] = useState({ event, selectedDate })
+  if (prevProps.event !== event || prevProps.selectedDate !== selectedDate) {
+    setPrevProps({ event, selectedDate })
     setFormData(initFormData(event, selectedDate))
-  }, [event, selectedDate])
+  }
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
