@@ -81,4 +81,3 @@ MIT
 ---
 
 **Created with**: Vue.js 3 + Vite | **Designed for**: iOS / Android | **Future**: Spring Boot Integration
-
