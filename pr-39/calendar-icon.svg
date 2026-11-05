@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">カレンダー共有アプリアイコン</title>
+  <desc id="desc">角丸の青い背景に、共有予定を表すカレンダーとユーザーを配置した単色SVGアイコン。</desc>
+  <rect width="512" height="512" rx="96" fill="#2563eb"/>
+  <rect x="96" y="112" width="320" height="288" rx="40" fill="#f8fafc"/>
+  <rect x="96" y="112" width="320" height="88" rx="40" fill="#1e3a8a"/>
+  <rect x="96" y="160" width="320" height="40" fill="#1e3a8a"/>
+  <rect x="152" y="76" width="40" height="88" rx="20" fill="#bfdbfe"/>
+  <rect x="320" y="76" width="40" height="88" rx="20" fill="#bfdbfe"/>
+  <circle cx="170" cy="262" r="22" fill="#60a5fa"/>
+  <circle cx="256" cy="262" r="22" fill="#60a5fa"/>
+  <circle cx="342" cy="262" r="22" fill="#60a5fa"/>
+  <circle cx="170" cy="338" r="22" fill="#60a5fa"/>
+  <circle cx="256" cy="338" r="22" fill="#2563eb"/>
+  <circle cx="342" cy="338" r="22" fill="#60a5fa"/>
+  <path d="M216 348c0-22 18-40 40-40s40 18 40 40-18 40-40 40-40-18-40-40Z" fill="#1e3a8a"/>
+  <path d="M184 420c8-32 36-56 72-56s64 24 72 56H184Z" fill="#1e3a8a"/>
+  <path d="M314 416c10-22 32-36 58-36s48 14 58 36H314Z" fill="#bfdbfe"/>
+  <circle cx="372" cy="348" r="32" fill="#bfdbfe"/>
+  <path d="M82 416c10-22 32-36 58-36s48 14 58 36H82Z" fill="#bfdbfe"/>
+  <circle cx="140" cy="348" r="32" fill="#bfdbfe"/>
+</svg>
