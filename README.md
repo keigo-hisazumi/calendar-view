@@ -1,8 +1,8 @@
 # カレンダーアプリ - 予定共有
 
-他人と予定を共有することを想定したカレンダーアプリのモックです。月間カレンダーで予定を追加・編集・削除でき、データはブラウザの localStorage に保存されます。
+他人と予定を共有することを想定したカレンダーアプリのモックです。月間表示で予定を追加・編集できます。
 
-公開 URL: <https://keigo-hisazumi.github.io/calendar-view/>
+**公開 URL**: <https://keigo-hisazumi.github.io/calendar-view/>
 
 ## 主な機能
 
