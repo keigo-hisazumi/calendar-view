@@ -12,19 +12,22 @@
   "theme_color": "#2563eb",
   "icons": [
     {
+      "src": "/calendar-view/pwa-64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
       "src": "/calendar-view/pwa-192x192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
       "src": "/calendar-view/pwa-512x512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
-      "src": "/calendar-view/pwa-512x512.png",
+      "src": "/calendar-view/maskable-icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
